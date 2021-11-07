@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 725148568203994638}
   m_Layer: 0
   m_Name: Part
-  m_TagString: Untagged
+  m_TagString: Part
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,5 +129,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   front: {fileID: 9207541054723020084, guid: 7265c1f8ee85823469fb8ceaab24503d, type: 3}
   back: {fileID: -2796314236206107100, guid: a6350e96ac733cf42935876e82eba572, type: 3}
-  gameController: {fileID: 7803682955282960713, guid: 46d74ca124b8918479b981122cacf033,
-    type: 3}

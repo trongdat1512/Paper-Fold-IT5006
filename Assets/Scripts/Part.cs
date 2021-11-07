@@ -5,57 +5,53 @@ using UnityEngine;
 
 public class Part : MonoBehaviour
 {
-    private SpriteRenderer _rend;
-    private PolygonCollider2D _cld;
+    [SerializeField] Sprite front, back;
     
-    public Sprite front, back;
-
-    private bool _coroutineAllow, _isFaceUp, _isPressed;
-
-    private Transform _myTransform;
+    SpriteRenderer _rend;
+    PolygonCollider2D _cld;
+    GameController _controller;
+    Transform _myTransform;
+    
+    bool _coroutineAllow, _isFaceUp, _halfFolded;
+    
     // Start is called before the first frame update
     void Start()
     {
         _myTransform = GetComponent<Transform>();
         _rend = GetComponent<SpriteRenderer>();
         _cld = GetComponent<PolygonCollider2D>();
+        _controller = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         _rend.sprite = back;
         _coroutineAllow = true;
         _isFaceUp = false;
-        _isPressed = false;
-    }
-
-    private void Update()
-    {
-        // Debug log
-        if (Input.GetKeyDown("space"))
-        {
-            /*Debug.Log("from: " + rAxis.GetDirection());
-            Debug.Log("to: " + (_mMyTransform.position - rAxis.GetPosition()));
-            Debug.Log("angle: " + Vector3.SignedAngle(rAxis.GetDirection(), _mMyTransform.position - rAxis.GetPosition(), Vector3.forward));*/
-        }
+        _halfFolded = false;
     }
 
     void OnMouseDown()
     {
-        _isPressed = true;
-        Debug.Log(gameObject.name);
-    }
-
-    void OnMouseUp()
-    {
-        _isPressed = false;
-    }
-
-    public bool IsPressed()
-    {
-        return _isPressed;
+        _controller.HandlePress(this);
     }
 
     public bool IsCoroutineAllow()
     {
         return _coroutineAllow;
     }
+
+    public bool IsHalfFolded()
+    {
+        return _halfFolded;
+    }
+    
+    public int GetSortingOrder()
+    {
+        return _rend.sortingOrder;
+    }
+
+    public void SetSortingOrder(int sortingOrder)
+    {
+        _rend.sortingOrder = sortingOrder;
+    }
+    
     public IEnumerator Fold(RotationAxis rotationAxis)
     {
         //_myTransform.position = new Vector3(_myTransform.position.x, _myTransform.position.y, 0);
@@ -64,19 +60,18 @@ public class Part : MonoBehaviour
         float signed = angle / Math.Abs(angle);
         _coroutineAllow = false;
         
-        for (int i = 1; i <= 18; i++)
+        for (int i = 1; i <= 36; i++)
         {
-            _myTransform.RotateAround(rotationAxis.GetPosition(), rotationAxis.GetDirection(), 10*signed);
-            if (i == 9)
+            _myTransform.RotateAround(rotationAxis.GetPosition(), rotationAxis.GetDirection(), 5*signed);
+            if (i == 18)
             {
+                _halfFolded = true;
                 if (_isFaceUp)
                 {
-                    _rend.sortingOrder--;
                     _rend.sprite = back;
                 }
                 else
                 {
-                    _rend.sortingOrder++;
                     _rend.sprite = front;
                 }
             }
@@ -86,6 +81,7 @@ public class Part : MonoBehaviour
         _myTransform.position = new Vector3(_myTransform.position.x, _myTransform.position.y, 0);
         //_myTransform.position = new Vector3(_myTransform.position.x, _myTransform.position.y, -_rend.sortingOrder);
         _coroutineAllow = true;
+        _halfFolded = false;
         _isFaceUp = !_isFaceUp;
     }
 }

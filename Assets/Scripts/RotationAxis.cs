@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotationAxis : MonoBehaviour
 {
-    private LineRenderer _mLineRenderer;
+    LineRenderer _mLineRenderer;
     // Start is called before the first frame update
     void Start()
     {

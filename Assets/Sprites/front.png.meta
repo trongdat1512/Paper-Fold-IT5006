@@ -228,7 +228,7 @@ TextureImporter:
       name: front_center
       rect:
         serializedVersion: 2
-        x: 480
+        x: 483
         y: 437
         width: 611
         height: 626
@@ -249,7 +249,7 @@ TextureImporter:
       name: front_7
       rect:
         serializedVersion: 2
-        x: 1276
+        x: 1279
         y: 427
         width: 213
         height: 626
@@ -313,7 +313,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 331
-        y: 13
+        y: 10
         width: 611
         height: 196
       alignment: 0
