@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: cf2482d51532ba842ac6dc5f9f892e3b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2690792559708188323
+    second: back_3
+  - first:
+      213: 9207541054723020084
+    second: back_3
+  - first:
+      213: 4333283870218021683
+    second: back_3
+  - first:
+      213: -204359854808501785
+    second: back_6
+  - first:
+      213: 2622741462206141062
+    second: back_6
+  - first:
+      213: -143640507430623617
+    second: back_6
+  - first:
+      213: 5985239058471163646
+    second: back_10
+  - first:
+      213: 135179344375432367
+    second: back_10
+  - first:
+      213: -7813102268451743204
+    second: back_10
+  - first:
+      213: 3199309786563526072
+    second: back_10
+  - first:
+      213: -3811724037486702110
+    second: back_10
+  - first:
+      213: 1534854558981374286
+    second: lv0-blank_0
+  - first:
+      213: -4421816155040361269
+    second: lv0-blank_1
+  - first:
+      213: 6638149756653556266
+    second: lv0-blank_2
+  - first:
+      213: 4287600474602054415
+    second: lv0-blank_3
+  - first:
+      213: -8326045404667455620
+    second: lv0-blank_4
+  - first:
+      213: 7275263111165066901
+    second: lv0-blank_5
+  - first:
+      213: 688867848287984176
+    second: lv0-blank_6
+  - first:
+      213: 764326481956594224
+    second: lv0-blank_7
+  - first:
+      213: 2174130591288806070
+    second: lv0-blank_8
+  - first:
+      213: 7258301103845899336
+    second: lv0-blank_9
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lv0-blank_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1180
+        width: 303
+        height: 305
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4149f1e616ec4510800000000000000
+      internalID: 1534854558981374286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_1
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 1297
+        width: 179
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc45cb082ad82a2c0800000000000000
+      internalID: -4421816155040361269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_2
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 1305
+        width: 486
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a225e2388027f1c50800000000000000
+      internalID: 6638149756653556266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_3
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 1313
+        width: 213
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f03a37b3aed908b30800000000000000
+      internalID: 4287600474602054415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_4
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 907
+        width: 177
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77d50751d1f37c80800000000000000
+      internalID: -8326045404667455620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_5
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 425
+        width: 213
+        height: 626
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59e3f7ce04de6f460800000000000000
+      internalID: 7275263111165066901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_6
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 352
+        width: 176
+        height: 501
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03a946288a95f8900800000000000000
+      internalID: 688867848287984176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 10
+        width: 176
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0326271c2ee6b9a00800000000000000
+      internalID: 764326481956594224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_8
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 3
+        width: 611
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba4415f0401c2e10800000000000000
+      internalID: 2174130591288806070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv0-blank_9
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 13
+        width: 213
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c7f87d56aaab460800000000000000
+      internalID: 7258301103845899336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

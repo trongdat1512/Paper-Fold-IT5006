@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    /*public List<Part> partList;
-    public List<RotationAxis> rAxisList;*/
+    [SerializeField] List<Part> partList;
     [SerializeField] List<FoldGroup> foldGroups;
+    [SerializeField] List<Part> winCondition;
 
     Stack<FoldGroup> _historyStack;
     bool _coroutineAllow = true;
@@ -16,21 +16,30 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _historyStack = new Stack<FoldGroup>();   
+        _historyStack = new Stack<FoldGroup>();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown("backspace"))
+        if (_historyStack.Count == foldGroups.Count)
         {
-            if (_historyStack.Count != 0 && !_historyStack.Peek().IsFolding())
+            if (CheckWin())
+            {
+                //Win
+            }
+            else
             {
                 if (_coroutineAllow)
                 {
-                    StartCoroutine(UnFoldTop());
+                    StartCoroutine(UnFoldAll());
                 }
             }
         }
+    }
+
+    public List<Part> GetPartList()
+    {
+        return partList;
     }
 
     IEnumerator UnFoldTop()
@@ -40,7 +49,7 @@ public class GameController : MonoBehaviour
         _historyStack.Pop();
         _coroutineAllow = true;
     }
-
+    
     IEnumerator UnFoldToPart(Part part)
     {
         _coroutineAllow = false;
@@ -53,6 +62,17 @@ public class GameController : MonoBehaviour
         _coroutineAllow = true;
     }
     
+    IEnumerator UnFoldAll()
+    {
+        _coroutineAllow = false;
+        yield return StartCoroutine(UnFoldTop());
+        if (_historyStack.Count > 0)
+        {
+            yield return StartCoroutine(UnFoldAll());
+        }
+        _coroutineAllow = true;
+    }
+    
     IEnumerator Fold(FoldGroup foldGroup)
     {
         _coroutineAllow = false;
@@ -60,6 +80,7 @@ public class GameController : MonoBehaviour
         _historyStack.Push(foldGroup);
         _coroutineAllow = true;
     }
+    
     public void HandlePress(Part part)
     {
         FoldGroup foldGroup = foldGroups.Find(x => x.foldParts.Contains(part) && x.GetStatus() == 0);
@@ -81,5 +102,21 @@ public class GameController : MonoBehaviour
                 }
             }  
         }
+    }
+
+    bool CheckWin()
+    {
+        if (winCondition.Count > 0 && winCondition.Count % 2 == 0)
+        {
+            int i = 0;
+            bool status = false;
+            while (i < winCondition.Count)
+            {
+                status = winCondition[i].GetSortingOrder() > winCondition[i+1].GetSortingOrder();
+                i += 2;
+            }
+            return status;
+        }
+        return true;
     }
 }

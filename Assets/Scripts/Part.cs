@@ -6,7 +6,7 @@ using UnityEngine;
 public class Part : MonoBehaviour
 {
     [SerializeField] Sprite front, back;
-    
+    GameObject _mask;
     SpriteRenderer _rend;
     PolygonCollider2D _cld;
     GameController _controller;
@@ -21,10 +21,27 @@ public class Part : MonoBehaviour
         _rend = GetComponent<SpriteRenderer>();
         _cld = GetComponent<PolygonCollider2D>();
         _controller = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        _mask = new GameObject("Mask");
+        _mask.transform.parent = _myTransform;
+        _mask.AddComponent<SpriteMask>();
+        _mask.GetComponent<SpriteMask>().sprite = _rend.sprite;
+        _mask.transform.localPosition = Vector3.zero;
+        _mask.transform.localScale = Vector3.one;
+        _mask.transform.localRotation = Quaternion.identity;
         _rend.sprite = back;
         _coroutineAllow = true;
         _isFaceUp = false;
         _halfFolded = false;
+    }
+
+    public Sprite GetSprite()
+    {
+        return front;
+    }
+    
+    public void SetSprite(Sprite sprite)
+    {
+        front = sprite;
     }
 
     void OnMouseDown()
@@ -60,10 +77,10 @@ public class Part : MonoBehaviour
         float signed = angle / Math.Abs(angle);
         _coroutineAllow = false;
         
-        for (int i = 1; i <= 36; i++)
+        for (int i = 1; i <= 18; i++)
         {
-            _myTransform.RotateAround(rotationAxis.GetPosition(), rotationAxis.GetDirection(), 5*signed);
-            if (i == 18)
+            _myTransform.RotateAround(rotationAxis.GetPosition(), rotationAxis.GetDirection(), 10*signed);
+            if (i == 9)
             {
                 _halfFolded = true;
                 if (_isFaceUp)
@@ -76,7 +93,7 @@ public class Part : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.005f);
         }
         _myTransform.position = new Vector3(_myTransform.position.x, _myTransform.position.y, 0);
         //_myTransform.position = new Vector3(_myTransform.position.x, _myTransform.position.y, -_rend.sortingOrder);

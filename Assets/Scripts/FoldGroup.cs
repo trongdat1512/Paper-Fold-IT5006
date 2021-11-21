@@ -9,14 +9,24 @@ public class FoldGroup : MonoBehaviour
     public List<Part> foldParts;
     [SerializeField] RotationAxis rAxis;
     //status -1: Not _isFolding; 0: _isFolding; 1: Folded & Un_isFolding; >1: Folded & Not un_isFolding
-    [SerializeField] int status;
+    int _status;
     [SerializeField] List<FoldGroup> prevFoldGroups, nextFoldGroups;
 
     private bool _isFolding = false;
-    
+
+    private void Start()
+    {
+        _status = prevFoldGroups.Count > 0 ? -1 : 0;
+    }
+
+    private void Update()
+    {
+        rAxis.SetVisible(_status == 0 ? true : false);
+    }
+
     public int GetStatus()
     {
-        return status;
+        return _status;
     }
 
     public bool IsFolding()
@@ -66,15 +76,15 @@ public class FoldGroup : MonoBehaviour
             
             foreach (var foldGroup in prevFoldGroups)
             {
-                foldGroup.status++;
+                foldGroup._status++;
             }
             
             foreach (var foldGroup in nextFoldGroups)
             {
-                foldGroup.status = 0;
+                foldGroup._status = 0;
             }
             
-            status = 1;
+            _status = 1;
             _isFolding = false;
             yield return null;
         }
@@ -122,15 +132,15 @@ public class FoldGroup : MonoBehaviour
             
             foreach (var foldGroup in prevFoldGroups)
             {
-                foldGroup.status--;
+                foldGroup._status--;
             }
             
             foreach (var foldGroup in nextFoldGroups)
             {
-                foldGroup.status = -1;
+                foldGroup._status = -1;
             }
             
-            status = 0;
+            _status = 0;
             _isFolding = false;
             yield return null;
         }
@@ -153,7 +163,7 @@ public class FoldGroup : MonoBehaviour
             int index = distinctSortingOrderList.Count - 1 -
                         distinctSortingOrderList.IndexOf(foldPart.GetSortingOrder());
             int changeVal = distinctSortingOrderList.Max() - distinctSortingOrderList.Min() + 1;
-            foldPart.SetSortingOrder(distinctSortingOrderList[index] + (status == 0 ? changeVal : -changeVal));
+            foldPart.SetSortingOrder(distinctSortingOrderList[index] + (_status == 0 ? changeVal : -changeVal));
         }
     }
 }

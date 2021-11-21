@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 5985239058471163646, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -2690792559708188323, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -204359854808501785, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: 3052483126490613976, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -7518761654624676281, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -268665122245818335, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -4571828015118065507, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -8741071136333515919, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -2796314236206107100, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: -5822661299923822066, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  - {fileID: 8146415367641992747, guid: a6350e96ac733cf42935876e82eba572, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - back_10
+  - back_center
+  - back_7
+  - back_6
+  - back_5
+  - back_4
+  - back_3
+  - back_2
+  - back_1
+  - back_9
+  - back_8
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0

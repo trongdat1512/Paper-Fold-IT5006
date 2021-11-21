@@ -1,0 +1,5 @@
+<svg width="750" height="750" viewBox="0 0 750 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 500V750H750V500H0Z" fill="#BBBBBB"/>
+<path d="M750 750V0H500V750H750Z" fill="#BBBBBB"/>
+<path d="M500 500L500 0L0 500L500 500Z" fill="#BBBBBB"/>
+</svg>

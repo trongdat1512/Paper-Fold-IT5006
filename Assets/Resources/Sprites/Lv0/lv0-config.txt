@@ -1,0 +1,55 @@
+{
+	"numberOfPart": 10,
+	"foldGroups":[
+	{
+		"parts": [0, 1, 2],
+		"prev": [],
+		"next": [
+			{
+				"parts": [1, 3, 4]
+			},
+			{
+				"parts": [2, 5, 7]
+			}
+		]
+	},
+	{
+		"parts": [4, 6, 9],
+		"prev": [],
+		"next": []
+	},
+	{
+		"parts": [7, 8, 9],
+		"prev": [],
+		"next": []
+	},
+	{
+		"parts": [1, 3, 4],
+		"prev": [
+			{
+				"parts": [0, 1, 2]
+			}
+		],
+		"next": []
+	},
+	{
+		"parts": [2, 5, 7],
+		"prev": [
+			{
+				"parts": [0, 1, 2]
+			}
+		],
+		"next": []
+	}
+	],
+	"winCheck":[
+		{
+			"abovePart": 2,
+			"underPart": 5
+		},
+		{
+			"abovePart": 6,
+			"underPart": 8
+		}		
+	]
+}

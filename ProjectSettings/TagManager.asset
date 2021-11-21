@@ -44,3 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4234420265
+    locked: 0
+  - name: Shadow
+    uniqueID: 300341601
+    locked: 0
+  - name: Part
+    uniqueID: 1025905769
+    locked: 0
+  - name: Line
+    uniqueID: 2327665729
+    locked: 0
