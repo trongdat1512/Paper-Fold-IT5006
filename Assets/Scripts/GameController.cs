@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,14 +10,17 @@ public class GameController : MonoBehaviour
     [SerializeField] List<Part> partList;
     [SerializeField] List<FoldGroup> foldGroups;
     [SerializeField] List<Part> winCondition;
+    [SerializeField] GameObject centerPart;
 
     Stack<FoldGroup> _historyStack;
     bool _coroutineAllow = true;
+    bool _isPassed;
 
     // Start is called before the first frame update
     void Start()
     {
         _historyStack = new Stack<FoldGroup>();
+        _isPassed = false;
     }
 
     private void Update()
@@ -25,16 +29,47 @@ public class GameController : MonoBehaviour
         {
             if (CheckWin())
             {
-                //Win
+                if (_coroutineAllow)
+                {
+                    _isPassed = true;
+                }
             }
             else
             {
                 if (_coroutineAllow)
                 {
-                    StartCoroutine(UnFoldAll());
+                    StartCoroutine(PaperShake1());
                 }
             }
         }
+    }
+
+    IEnumerator PaperShake1()
+    {
+        _coroutineAllow = false;
+        transform.parent.LeanMoveX(-.2f, .1f).setOnComplete(PaperShake2);
+        yield return null;
+    }
+    void PaperShake2()
+    {
+        transform.parent.LeanMoveX(.2f, .1f).setOnComplete(PaperShake3);
+    }
+    void PaperShake3()
+    {
+        transform.parent.LeanMoveX(-.2f, .1f).setOnComplete(PaperShake4);
+    }
+    void PaperShake4()
+    {
+        transform.parent.LeanMoveX(0, .1f).setOnComplete(UnfoldAllFunc);
+    }
+    void UnfoldAllFunc()
+    {
+        StartCoroutine(UnFoldAll());
+    }
+
+    public bool IsPassed()
+    {
+        return _isPassed;
     }
 
     public List<Part> GetPartList()
@@ -42,6 +77,11 @@ public class GameController : MonoBehaviour
         return partList;
     }
 
+    public GameObject GetCenterPart()
+    {
+        return centerPart;
+    }
+    
     IEnumerator UnFoldTop()
     {
         _coroutineAllow = false;
@@ -104,7 +144,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    bool CheckWin()
+    public bool CheckWin()
     {
         if (winCondition.Count > 0 && winCondition.Count % 2 == 0)
         {
@@ -117,6 +157,6 @@ public class GameController : MonoBehaviour
             }
             return status;
         }
-        return true;
+        return false;
     }
 }

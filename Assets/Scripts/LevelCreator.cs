@@ -9,10 +9,12 @@ using UnityEngine.UI;
 public class LevelCreator : MonoBehaviour
 {
     [SerializeField] GameObject img;
-    [SerializeField] String hexColor;
+    [SerializeField] Color color = Color.white;
     [SerializeField] String levelToSave = "";
 
     List<Part> _partList = new List<Part>();
+    GameObject _centerPart;
+    SpriteRenderer _centerPartRend;
     GameController _gameController;
     List<SpriteRenderer> _rendList = new List<SpriteRenderer>();
 
@@ -20,18 +22,21 @@ public class LevelCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _savedFolderPath = "Assets/Resources/Sprites/Level/Level " + levelToSave + "/";
         _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         _partList = _gameController.GetPartList();
+        _centerPart = _gameController.GetCenterPart();
+        _centerPartRend = _centerPart.GetComponent<SpriteRenderer>();
         foreach (var part in _partList)
         {
             _rendList.Add(part.GetComponent<SpriteRenderer>());
         }
     }
 
+    
     // Update is called once per frame
     void Update()
     {
+        _savedFolderPath = "Assets/Resources/Sprites/Level/Level " + levelToSave + "/";
         if (Input.GetKeyDown("space"))
         {
             StampImg();
@@ -50,11 +55,10 @@ public class LevelCreator : MonoBehaviour
         Sprite imgSprite = imgRend.sprite;
         Texture2D imgTexture = imgSprite.texture;
         List<Texture2D> spriteTextureList = new List<Texture2D>();
+        Texture2D centerTexture = TextureFromSprite(_centerPartRend.sprite);
         List<Texture2D> textureList = new List<Texture2D>();
         List<bool> hasImg = new List<bool>();
-        Color color = Color.white;
-        ColorUtility.TryParseHtmlString(hexColor, out color);
-        
+
         // Create empty texture list with color
         foreach (var part in _partList)
         {
@@ -115,16 +119,40 @@ public class LevelCreator : MonoBehaviour
                     int yy = (int)topRendPixelIndex.y;
                     
                     Color topRendPixelColor = spriteTextureList[topRendIndex].GetPixel(xx, yy);
-                    
-                    if (imgPixelColor.a > 0 && topRendPixelColor.a > 0)
+
+                    if (xx >= 0 && xx < spriteTextureList[topRendIndex].width &&
+                        yy >= 0 && yy <= spriteTextureList[topRendIndex].height)
                     {
-                        textureList[topRendIndex].SetPixel(xx, yy, imgPixelColor);
-                    }
-                    else
-                    {
-                        textureList[topRendIndex].SetPixel(xx, yy, topRendPixelColor);
+                        if (imgPixelColor.a > 0 && topRendPixelColor.a > 0)
+                        {
+                            textureList[topRendIndex].SetPixel(xx, yy, imgPixelColor);
+                        }
+                        else
+                        {
+                            textureList[topRendIndex].SetPixel(xx, yy, topRendPixelColor);
+                        }
                     }
                 }
+                
+                // Stamp white shadow to center part
+                /*if(HasObject(pixelWorldPos, _centerPartRend))
+                {
+                    Vector2 centerPartPixelIndex = FindPixelIndex(pixelWorldPos, _centerPartRend, centerTexture);
+                    int xx = (int)centerPartPixelIndex.x;
+                    int yy = (int)centerPartPixelIndex.y;
+                    Color centerPartPixelColor = centerTexture.GetPixel(xx, yy);
+                    if (xx >= 0 && xx < centerTexture.width && yy >= 0 && yy <= centerTexture.height)
+                    {
+                        if (imgPixelColor.a > 0 && centerPartPixelColor.a > 0)
+                        {
+                            centerTexture.SetPixel(xx, yy, Color.white);
+                        }
+                        else
+                        {
+                            centerTexture.SetPixel(xx, yy, centerPartPixelColor);
+                        }
+                    }
+                }*/
             }
         }
         
@@ -134,7 +162,7 @@ public class LevelCreator : MonoBehaviour
             Sprite stampedSprite = Sprite.Create(textureList[i],
                 new Rect(0, 0, textureList[i].width, textureList[i].height),
                 new Vector2(.5f, .5f));
-            stampedSprite.name = "lv0_" + i;
+            stampedSprite.name = "lv" + levelToSave + "_" + i;
             byte[] bytes = textureList[i].EncodeToPNG();
             if(!Directory.Exists(_savedFolderPath)) {
                 Directory.CreateDirectory(_savedFolderPath);
@@ -142,8 +170,19 @@ public class LevelCreator : MonoBehaviour
             File.WriteAllBytes(_savedFolderPath + "lv" + levelToSave + "_"+i+".png", bytes);
             _rendList[i].sprite = stampedSprite;
         }
+        
+        /*centerTexture.Apply();
+        Sprite stampedCenterSprite = Sprite.Create(centerTexture,
+            new Rect(0, 0, centerTexture.width, centerTexture.height),
+            new Vector2(.5f, .5f));
+        stampedCenterSprite.name = "lv" + levelToSave + "_center";
+        byte[] bytess = centerTexture.EncodeToPNG();
+        if(!Directory.Exists(_savedFolderPath)) {
+            Directory.CreateDirectory(_savedFolderPath);
+        }
+        File.WriteAllBytes(_savedFolderPath + "lv" + levelToSave + "_center"+".png", bytess);
+        _centerPartRend.sprite = stampedCenterSprite;*/
 
-        LoadSavedAsset(_savedFolderPath);
         Debug.Log("Saved");
     }
 
@@ -153,6 +192,8 @@ public class LevelCreator : MonoBehaviour
         {
             _partList[i].SetSprite(AssetDatabase.LoadAssetAtPath<Sprite>(savedFolderPath + "lv" + levelToSave + "_"+i+".png"));
         }
+
+        _centerPartRend.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(savedFolderPath + "lv" + levelToSave + "_center"+".png");
     }
     static Texture2D TextureFromSprite(Sprite sprite)
     {

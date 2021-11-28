@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Part : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Part : MonoBehaviour
     GameObject _mask;
     SpriteRenderer _rend;
     PolygonCollider2D _cld;
-    GameController _controller;
+    [SerializeField] GameController gameController;
     Transform _myTransform;
     
     bool _coroutineAllow, _isFaceUp, _halfFolded;
@@ -20,14 +21,20 @@ public class Part : MonoBehaviour
         _myTransform = GetComponent<Transform>();
         _rend = GetComponent<SpriteRenderer>();
         _cld = GetComponent<PolygonCollider2D>();
-        _controller = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        _mask = new GameObject("Mask");
-        _mask.transform.parent = _myTransform;
-        _mask.AddComponent<SpriteMask>();
-        _mask.GetComponent<SpriteMask>().sprite = _rend.sprite;
-        _mask.transform.localPosition = Vector3.zero;
-        _mask.transform.localScale = Vector3.one;
-        _mask.transform.localRotation = Quaternion.identity;
+        if (transform.Find("Mask") != null)
+        {
+            _mask = transform.Find("Mask").gameObject;
+        }
+        else
+        {
+            _mask = new GameObject("Mask");
+            _mask.transform.parent = _myTransform;
+            _mask.AddComponent<SpriteMask>();
+            _mask.GetComponent<SpriteMask>().sprite = _rend.sprite;
+            _mask.transform.localPosition = Vector3.zero;
+            _mask.transform.localScale = Vector3.one;
+            _mask.transform.localRotation = Quaternion.identity;
+        }
         _rend.sprite = back;
         _coroutineAllow = true;
         _isFaceUp = false;
@@ -46,7 +53,10 @@ public class Part : MonoBehaviour
 
     void OnMouseDown()
     {
-        _controller.HandlePress(this);
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            gameController.HandlePress(this);
+        }
     }
 
     public bool IsCoroutineAllow()

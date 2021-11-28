@@ -12,7 +12,7 @@ public class FoldGroup : MonoBehaviour
     int _status;
     [SerializeField] List<FoldGroup> prevFoldGroups, nextFoldGroups;
 
-    private bool _isFolding = false;
+    private bool _isFolding;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class FoldGroup : MonoBehaviour
 
     private void Update()
     {
-        rAxis.SetVisible(_status == 0 ? true : false);
+        rAxis.SetVisible(_status == 0);
     }
 
     public int GetStatus()
